@@ -11,6 +11,7 @@ const validateServiceQuestionLayers = function (question_layers: any) {
     const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     for (let i = 0; i < questionLayers.length; i++) {
         for(let j = 0; j < questionLayers[j].length; j++) {
+            
             if(!regexExp.test(questionLayers[i][j].id)) {
                 throw new Error("entity.errors.service.question_layers.question.invalidId");
             }
@@ -20,9 +21,9 @@ const validateServiceQuestionLayers = function (question_layers: any) {
             if(typeof questionLayers[i][j].title !== 'string') {
                 throw new Error("entity.errors.service.question_layers.question.invalidTitle");
             }
-            // if(typeof question_layers[i][j].placeholder !== 'string') {
-            //     throw new Error("entity.errors.service.question_layers.question.invalidPlaceholder");
-            // }
+            if(typeof questionLayers[i][j].placeholder !== 'string') {
+                throw new Error("entity.errors.service.question_layers.question.invalidPlaceholder");
+            }
             // if(question_layers[i][j].question_type === "text-area" && question_layers[i][j].answers !== null) {
             //     throw new Error("entity.errors.service.question_layers.question.answers.answerSpecifiedForTypeTextArea");
             // }

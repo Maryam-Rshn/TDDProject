@@ -103,30 +103,30 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if a question has invalid placeholder field", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: 22134,
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.invalidPlaceholder");
-    //     }
-    // });
+    it("won't work if a question has invalid placeholder field", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: 22134,
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.invalidPlaceholder");
+        }
+    });
 
     // it("won't work if a question with question_type text-area and has answers field that is not null", async() => {
     //     try {
