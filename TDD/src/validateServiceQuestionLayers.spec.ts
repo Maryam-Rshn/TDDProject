@@ -128,31 +128,31 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if a question with question_type text-area and has answers field that is not null", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: await generateId(),
-    //                         question_type: "text-area",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: 'alskdfhjsdkf',
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ],
+    it("won't work if a question with question_type text-area and has answers field that is not null", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: await generateId(),
+                            question_type: "text-area",
+                            title: "which phrase is test ?",
+                            placeholder: 'alskdfhjsdkf',
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ],
 
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.answers.answerSpecifiedForTypeTextArea");
-    //     }
-    // });
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.answers.answerSpecifiedForTypeTextArea");
+        }
+    });
 
     // it("won't work if a question with question_type radio & check-box has answers field that its not an array with at least two items in it", async() => {
     //     try {

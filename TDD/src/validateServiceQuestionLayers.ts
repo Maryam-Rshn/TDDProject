@@ -23,10 +23,10 @@ const validateServiceQuestionLayers = function (question_layers: any) {
             }
             if(typeof questionLayers[i][j].placeholder !== 'string') {
                 throw new Error("entity.errors.service.question_layers.question.invalidPlaceholder");
+            }        
+            if(questionLayers[i][j].question_type === "text-area" && questionLayers[i][j].answers !== null) {
+                throw new Error("entity.errors.service.question_layers.question.answers.answerSpecifiedForTypeTextArea");
             }
-            // if(question_layers[i][j].question_type === "text-area" && question_layers[i][j].answers !== null) {
-            //     throw new Error("entity.errors.service.question_layers.question.answers.answerSpecifiedForTypeTextArea");
-            // }
             // if(question_layers[i][j].question_type === "radio" || question_layers[i][j].question_type === "check-box" && question_layers[i][j].answers.length < 2) {
             //     throw new Error("entity.errors.service.question_layers.question.answers.invalidFormat");
             // }
