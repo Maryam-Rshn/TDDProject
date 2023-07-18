@@ -14,9 +14,9 @@ const validateServiceQuestionLayers = function (question_layers: any) {
             if(!regexExp.test(questionLayers[i][j].id)) {
                 throw new Error("entity.errors.service.question_layers.question.invalidId");
             }
-            // if(["text-area", "radio", "check-box"].indexOf(question_layers[i][j].question_type) === -1) {
-            //     throw new Error("entity.errors.service.question_layers.question.invalidQuestionType");
-            // }
+            if(["text-area", "radio", "check-box"].indexOf(questionLayers[i][j].question_type) === -1) {
+                throw new Error("entity.errors.service.question_layers.question.invalidQuestionType");
+            }
             // if(typeof question_layers[i][j].title !== 'string') {
             //     throw new Error("entity.errors.service.question_layers.question.invalidTitle");
             // }
