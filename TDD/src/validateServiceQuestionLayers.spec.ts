@@ -78,30 +78,30 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if a question has invalid title field", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: 1234,
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.invalidTitle");
-    //     }
-    // });
+    it("won't work if a question has invalid title field", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: 1234,
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.invalidTitle");
+        }
+    });
 
     // it("won't work if a question has invalid placeholder field", async() => {
     //     try {

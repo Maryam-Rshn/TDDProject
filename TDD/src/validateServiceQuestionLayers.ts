@@ -17,9 +17,9 @@ const validateServiceQuestionLayers = function (question_layers: any) {
             if(["text-area", "radio", "check-box"].indexOf(questionLayers[i][j].question_type) === -1) {
                 throw new Error("entity.errors.service.question_layers.question.invalidQuestionType");
             }
-            // if(typeof question_layers[i][j].title !== 'string') {
-            //     throw new Error("entity.errors.service.question_layers.question.invalidTitle");
-            // }
+            if(typeof questionLayers[i][j].title !== 'string') {
+                throw new Error("entity.errors.service.question_layers.question.invalidTitle");
+            }
             // if(typeof question_layers[i][j].placeholder !== 'string') {
             //     throw new Error("entity.errors.service.question_layers.question.invalidPlaceholder");
             // }
