@@ -14,69 +14,69 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if items in question layers are not arrays and their length is less than one", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.invalidFormat");
-    //     }
-    // });
+    it("won't work if items in question layers are not arrays and their length is less than one", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.invalidFormat");
+        }
+    });
 
-    // //* question validation
+    // // //* question validation
 
-    // it("won't work if a question has invalid id field", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: 'invalid id !',
-    //                         question_type: "blah blah blah",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.invalidId");
-    //     }
-    // });
+    it("won't work if a question has invalid id field", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: 'invalid id !',
+                            question_type: "blah blah blah",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.invalidId");
+        }
+    });
 
-    // it("won't work if a question has invalid question_type field", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: await generateId(),
-    //                         question_type: "blah blah blah",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.invalidQuestionType");
-    //     }
-    // });
+    it("won't work if a question has invalid question_type field", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: await generateId(),
+                            question_type: "blah blah blah",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.invalidQuestionType");
+        }
+    });
 
     // it("won't work if a question has invalid title field", async() => {
     //     try {
@@ -195,7 +195,7 @@ describe('validate question layers entity', () => {
 
     //                    }
     //                 ]
-    //             ],
+    //             ], 
     //         })
     //         expect(result).toBeFalsy();
     //     } catch (error:any) {
