@@ -27,9 +27,9 @@ const validateServiceQuestionLayers = function (question_layers: any) {
             if(questionLayers[i][j].question_type === "text-area" && questionLayers[i][j].answers !== null) {
                 throw new Error("entity.errors.service.question_layers.question.answers.answerSpecifiedForTypeTextArea");
             }
-            // if(question_layers[i][j].question_type === "radio" || question_layers[i][j].question_type === "check-box" && question_layers[i][j].answers.length < 2) {
-            //     throw new Error("entity.errors.service.question_layers.question.answers.invalidFormat");
-            // }
+            if(questionLayers[i][j].question_type === "radio" || questionLayers[i][j].question_type === "check-box" && questionLayers[i][j].answers.length < 2) {
+                throw new Error("entity.errors.service.question_layers.question.answers.invalidFormat");
+            }
             // if(question_layers[i][j].question_type === "radio" || question_layers[i][j].question_type === "check-box" && question_layers[i][j].answers.length < 2) {
             //     throw new Error("entity.errors.service.question_layers.question.answers.invalidFormat");
             // }

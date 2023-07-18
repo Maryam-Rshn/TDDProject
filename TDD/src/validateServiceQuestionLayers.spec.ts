@@ -154,29 +154,29 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if a question with question_type radio & check-box has answers field that its not an array with at least two items in it", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: 'alskdfhjsdkf',
-    //                         answers: [
-    //                             "bals",
-    //                         ],
+    it("won't work if a question with question_type radio & check-box has answers field that its not an array with at least two items in it", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: 'alskdfhjsdkf',
+                            answers: [
+                                "bals",
+                            ],
 
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.answers.invalidFormat");
-    //     }
-    // });
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.answers.invalidFormat");
+        }
+    });
 
     // it("won't work if a question with question_type radio & check-box has duplicate answers in their answers array", async() => {
     //     try {
