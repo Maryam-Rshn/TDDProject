@@ -8,6 +8,10 @@ const validateServiceQuestionLayers = function (question_layers: any) {
     if(questionLayers.length < 1) {
         throw new Error("entity.errors.service.question_layers.invalidFormat");
     }
+    if(questionLayers[0].length > 1) {
+        throw new Error("entity.errors.service.question_layers.firstLayer.moreThanOne");
+        
+    }
     const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     for (let i = 0; i < questionLayers.length; i++) {
         for(let j = 0; j < questionLayers[j].length; j++) {
