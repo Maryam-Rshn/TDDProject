@@ -287,37 +287,37 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("wont work if question layer 1 has ask_based field ", async() => {
-    //     try {
-    //         const id = await generateId();
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         ask_based:[
-    //                             {
-    //                                 previous_question_id: id,
-    //                                 answer_given_to_previous_question: null
-    //                             }
-    //                         ],
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.firstLayer.askBasedIsDefined");
-    //     }
-    // });
+    it("wont work if question layer 1 has ask_based field ", async() => {
+        try {
+            const id = await generateId();
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            ask_based:[
+                                {
+                                    previous_question_id: id,
+                                    answer_given_to_previous_question: null
+                                }
+                            ],
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.firstLayer.askBasedIsDefined");
+        }
+    });
 
     // //* other layer logic
 

@@ -9,8 +9,10 @@ const validateServiceQuestionLayers = function (question_layers: any) {
         throw new Error("entity.errors.service.question_layers.invalidFormat");
     }
     if(questionLayers[0].length > 1) {
-        throw new Error("entity.errors.service.question_layers.firstLayer.moreThanOne");
-        
+        throw new Error("entity.errors.service.question_layers.firstLayer.moreThanOne");  
+    }
+    if(questionLayers[0][0].hasOwnProperty('ask_based')) {
+        throw new Error("entity.errors.service.question_layers.firstLayer.askBasedIsDefined");  
     }
     const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     for (let i = 0; i < questionLayers.length; i++) {
