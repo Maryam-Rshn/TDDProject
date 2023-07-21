@@ -178,76 +178,76 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if a question with question_type radio & check-box has duplicate answers in their answers array", async() => {
-    //     try {
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: 'alskdfhjsdkf',
-    //                         answers: [
-    //                             "bals",
-    //                             "bals"
-    //                         ],
+    it("won't work if a question with question_type radio & check-box has duplicate answers in their answers array", async() => {
+        try {
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: 'alskdfhjsdkf',
+                            answers: [
+                                "bals",
+                                "bals"
+                            ],
 
-    //                    }
-    //                 ]
-    //             ], 
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.answers.duplicateAnswer");
-    //     }
-    // });
+                       }
+                    ]
+                ], 
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.answers.duplicateAnswer");
+        }
+    });
 
-    // it("won't work if a question with question_type end doesn't have only question_type and ask_based fields", async() => {
-    //     try {
-    //         const id = await generateId()
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                     {   
-    //                         id,
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                     }
-    //                  ],
-    //                 [   
-    //                     {   
-    //                         ask_based:[
-    //                             {
-    //                                 previous_question_id: id,
-    //                                 answer_given_to_previous_question: [
-    //                                     'bals',
-    //                                     "blaaa",
-    //                                     "test"
-    //                                 ]
-    //                             },
-    //                         ],
-    //                         id: await generateId(),
-    //                         question_type: "end",
-    //                         placeholder: 'something',
-    //                         title: null,
-    //                         answers: null
+    it("won't work if a question with question_type end doesn't have only question_type and ask_based fields", async() => {
+        try {
+            const id = await generateId()
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                        {   
+                            id,
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                        }
+                     ],
+                    [   
+                        {   
+                            ask_based:[
+                                {
+                                    previous_question_id: id,
+                                    answer_given_to_previous_question: [
+                                        'bals',
+                                        "blaaa",
+                                        "test"
+                                    ]
+                                },
+                            ],
+                            id: await generateId(),
+                            question_type: "end",
+                            placeholder: 'something',
+                            title: null,
+                            answers: null
 
-    //                    },
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.question.notNullValuesForTypeEnd");
-    //     }
-    // });
+                       },
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.question.notNullValuesForTypeEnd");
+        }
+    });
 
     // //* layer 1 logic
 
