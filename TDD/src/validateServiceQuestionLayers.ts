@@ -14,9 +14,18 @@ const validateServiceQuestionLayers = function (question_layers: any) {
     if(questionLayers[0][0].hasOwnProperty('ask_based')) {
         throw new Error("entity.errors.service.question_layers.firstLayer.askBasedIsDefined");  
     }
+    for (let m = 1; m < questionLayers.length; m++) {
+        for(let n = 0; n < questionLayers[n].length; n++) {
+            if(!questionLayers[m][n].hasOwnProperty('ask_based')) {
+                throw new Error("question layers above 1 must include ask_based field and it must be an array");
+            }
+        }
+    }
     const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     for (let i = 0; i < questionLayers.length; i++) {
         for(let j = 0; j < questionLayers[j].length; j++) {
+            console.log(questionLayers[i][j]);
+            
 
             // if(!regexExp.test(questionLayers[i][j].id)) {
             //     console.log(questionLayers[i][j]);
@@ -29,10 +38,10 @@ const validateServiceQuestionLayers = function (question_layers: any) {
             if(["text-area", "radio", "check-box", "end"].indexOf(questionLayers[i][j].question_type) === -1) {
                 throw new Error("entity.errors.service.question_layers.question.invalidQuestionType");
             }
-            if(typeof questionLayers[i][j].title !== 'string') {
+            if(questionLayers[i][j].question_type !== "end" && typeof questionLayers[i][j].title !== 'string') {
                 throw new Error("entity.errors.service.question_layers.question.invalidTitle");
             }
-            if(typeof questionLayers[i][j].placeholder !== 'string') {
+            if(questionLayers[i][j].question_type !== "end" && typeof questionLayers[i][j].placeholder !== 'string') {
                 throw new Error("entity.errors.service.question_layers.question.invalidPlaceholder");
             }        
             if(questionLayers[i][j].question_type === "text-area" && questionLayers[i][j].answers !== null) {
@@ -58,9 +67,11 @@ const validateServiceQuestionLayers = function (question_layers: any) {
                         throw new Error("entity.errors.service.question_layers.question.answers.duplicateAnswer");
                     }
                 }
-            }          
-            if(questionLayers[i][j].question_type === "end" && questionLayers[i][j].title !== null || questionLayers[i][j].answer !== null || questionLayers[i][j].placeholder !== null) {  
-                throw new Error("entity.errors.service.question_layers.question.notNullValuesForTypeEnd");
+            }
+            if(questionLayers[i][j].question_type === "end") {  
+                if(questionLayers[i][j].title !== null || questionLayers[i][j].answer !== null || questionLayers[i][j].placeholder !== null) {
+                    throw new Error("entity.errors.service.question_layers.question.notNullValuesForTypeEnd");
+                }
             }
         }
     }
