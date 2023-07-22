@@ -14,19 +14,23 @@ const validateServiceQuestionLayers = function (question_layers: any) {
     if(questionLayers[0][0].hasOwnProperty('ask_based')) {
         throw new Error("entity.errors.service.question_layers.firstLayer.askBasedIsDefined");  
     }
+    const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     for (let m = 1; m < questionLayers.length; m++) {
         for(let n = 0; n < questionLayers[n].length; n++) {
             if(!questionLayers[m][n].hasOwnProperty('ask_based')) {
                 throw new Error("question layers above 1 must include ask_based field and it must be an array");
+            } else {
+                questionLayers[m][n].ask_based.forEach((item: any) => {
+                    if(!(new RegExp(regexExp)).test(item.previous_question_id)) {
+                        throw new Error("entity.errors.service.question_layers.nextLayers.askBased.invalidPreviousQuestionId");
+                    }
+                });
             }
         }
     }
-    const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
     for (let i = 0; i < questionLayers.length; i++) {
         for(let j = 0; j < questionLayers[j].length; j++) {
-            console.log(questionLayers[i][j]);
             
-
             // if(!regexExp.test(questionLayers[i][j].id)) {
             //     console.log(questionLayers[i][j]);
                 

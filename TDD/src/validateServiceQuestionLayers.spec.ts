@@ -343,7 +343,7 @@ describe('validate question layers entity', () => {
                             id: await generateId(),
                             question_type: "radio",
                             title: "which phrase is test ?",
-                            placeholder: "khar",
+                            placeholder: "just pick test",
                             answers: [
                                 "bals",
                                 "blaaa",
@@ -361,50 +361,50 @@ describe('validate question layers entity', () => {
 
     // //* asked based logic
 
-    // it("won't work if questions ask_based field doesn't include a valid id field", async() => {
-    //     try {
-    //         const id = await generateId()
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id,
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ],
-    //                 [
-    //                     {   
-    //                         ask_based:[
-    //                             {
-    //                                 previous_question_id: "yoyoy",
-    //                                 answer_given_to_previous_question: null
-    //                             }
-    //                         ],
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.nextLayers.askBased.invalidPreviousQuestionId");
-    //     }
-    // });
+    it("won't work if questions ask_based field doesn't include a valid id field", async() => {
+        try {
+            const id = await generateId()
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id,
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ],
+                    [
+                        {   
+                            ask_based:[
+                                {
+                                    previous_question_id: "yoyoy",
+                                    answer_given_to_previous_question: null
+                                }
+                            ],
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.nextLayers.askBased.invalidPreviousQuestionId");
+        }
+    });
 
     // it("won't work if questions ask_based field previous_question_id doesn't exist on the previous layer", async() => {
     //     try {
