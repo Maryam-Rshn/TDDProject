@@ -35,6 +35,12 @@ const validateServiceQuestionLayers = function (question_layers: any) {
                         
                         
                     });
+                    if(questionLayers[m - 1][n].question_type !== 'radio') {
+                        if(item.answer_given_to_previous_question !== null) {
+                            throw new Error("entity.errors.service.question_layers.nextLayers.askBased.answerGivenToPreviousQuestionNotNullWhenRefrencingNoneRadioQuestion");
+                        }
+                        
+                    }
                     
                 });
             }

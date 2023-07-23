@@ -499,54 +499,54 @@ describe('validate question layers entity', () => {
         }
     });
 
-    // it("won't work if questions ask_based references a none radio type question and answer_given_to_previous_question field is not null ", async() => {
-    //     try {
-    //         const id = await generateId()
-    //         const result = await validateServiceQuestionLayers({
-    //             question_layers: [
-    //                 [
-    //                    {
-    //                         id,
-    //                         question_type: "check-box",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ],
-    //                 [
-    //                     {   
-    //                         ask_based:[
-    //                             {
-    //                                 previous_question_id: id,
-    //                                 answer_given_to_previous_question: [
-    //                                     'bals',
-    //                                     "blaaa",
-    //                                     "test"
-    //                                 ]
-    //                             }
-    //                         ],
-    //                         id: await generateId(),
-    //                         question_type: "radio",
-    //                         title: "which phrase is test ?",
-    //                         placeholder: "just pick test",
-    //                         answers: [
-    //                             "bals",
-    //                             "blaaa",
-    //                             "test"
-    //                         ]
-    //                    }
-    //                 ]
-    //             ],
-    //         })
-    //         expect(result).toBeFalsy();
-    //     } catch (error:any) {
-    //         expect(error.message).toBe("entity.errors.service.question_layers.nextLayers.askBased.answerGivenToPreviousQuestionNotNullWhenRefrencingNoneRadioQuestion");
-    //     }
-    // });
+    it("won't work if questions ask_based references a none radio type question and answer_given_to_previous_question field is not null ", async() => {
+        try {
+            const id = await generateId()
+            const result = await validateServiceQuestionLayers({
+                question_layers: [
+                    [
+                       {
+                            id,
+                            question_type: "check-box",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ],
+                    [
+                        {   
+                            ask_based:[
+                                {
+                                    previous_question_id: id,
+                                    answer_given_to_previous_question: [
+                                        'bals',
+                                        "blaaa",
+                                        "test"
+                                    ]
+                                }
+                            ],
+                            id: await generateId(),
+                            question_type: "radio",
+                            title: "which phrase is test ?",
+                            placeholder: "just pick test",
+                            answers: [
+                                "bals",
+                                "blaaa",
+                                "test"
+                            ]
+                       }
+                    ]
+                ],
+            })
+            expect(result).toBeFalsy();
+        } catch (error:any) {
+            expect(error.message).toBe("entity.errors.service.question_layers.nextLayers.askBased.answerGivenToPreviousQuestionNotNullWhenRefrencingNoneRadioQuestion");
+        }
+    });
 
     // //* scenarios logic
 
