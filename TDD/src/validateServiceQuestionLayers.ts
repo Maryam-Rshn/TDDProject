@@ -28,6 +28,13 @@ const validateServiceQuestionLayers = function (question_layers: any) {
                     if(item.previous_question_id !== questionLayers[m - 1][n].id) {
                         throw new Error("entity.errors.service.question_layers.nextLayers.askBased.invalidPreviousQuestionId");
                     }
+                    item.answer_given_to_previous_question.forEach((answer: string) => {
+                        if(questionLayers[m - 1][n].answers.indexOf(answer) === -1) {
+                            throw new Error("entity.errors.service.question_layers.nextLayers.askBased.invalidAnswerGivenToPreviousQuestionWhenRefrencingRadioQuestion");
+                        }
+                        
+                        
+                    });
                     
                 });
             }
