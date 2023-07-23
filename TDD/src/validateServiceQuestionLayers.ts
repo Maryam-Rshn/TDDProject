@@ -24,6 +24,11 @@ const validateServiceQuestionLayers = function (question_layers: any) {
                     if(!(new RegExp(regexExp)).test(item.previous_question_id)) {
                         throw new Error("entity.errors.service.question_layers.nextLayers.askBased.invalidPreviousQuestionId");
                     }
+                    
+                    if(item.previous_question_id !== questionLayers[m - 1][n].id) {
+                        throw new Error("entity.errors.service.question_layers.nextLayers.askBased.invalidPreviousQuestionId");
+                    }
+                    
                 });
             }
         }
@@ -77,6 +82,8 @@ const validateServiceQuestionLayers = function (question_layers: any) {
                     throw new Error("entity.errors.service.question_layers.question.notNullValuesForTypeEnd");
                 }
             }
+            // console.log(questionLayers[i][j]);
+            
         }
     }
 }
